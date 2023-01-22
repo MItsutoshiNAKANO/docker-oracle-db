@@ -1,0 +1,18 @@
+# @see https://docs.docker.jp/compose/index.html
+# @see https://docs.docker.com/compose/compose-file/
+# @see https://github.com/oracle/docker-images/tree/main/OracleDatabase/SingleInstance
+# @see https://zenn.dev/re24_1986/articles/29430f2f8b4b46
+services:
+  db:
+    image: oracle/database:19.3.0-ee
+    container_name: oracle19c
+    ports:
+      - 1521:1521
+    volumes:
+      - db-store:/opt/oracle/oradata
+      - ./script/setup:/opt/oracle/scripts/setup
+    environment:
+      - ORACLE_PWD=${ORACLE_PWD}
+volumes:
+  db-store:
+
